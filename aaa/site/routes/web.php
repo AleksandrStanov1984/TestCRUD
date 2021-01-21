@@ -23,4 +23,6 @@ Route::get('/user/{id}/{name}', function ($id, $name) {
     return 'ID: ' . $id . ' . NAME .' . $name;
 });
 
-Route::resource('post', 'NewUserController');
+Route::resource('post', 'App\Http\Controllers\NewUserController');
+
+Route::resource('post', 'App\Http\Controllers\UserController');

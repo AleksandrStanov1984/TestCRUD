@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title')Продукты@endsection
+@section('title')Пользователи@endsection
 
 @section('main_content')
     <style>
@@ -15,7 +15,17 @@
         }
 
     </style>
+    <div class="input-group">
+        <div class="form-outline">
+            <input type="search" id="form1" class="form-control" placeholder="Search" value=""/>
+        </div>
+        <a href="" type="button" class="btn btn-primary" style="width: 40px">
+            <i class="fas fa-search"></i>
+        </a>
+    </div>
 
+
+<div style="margin-top: 10px">
     <table style="width: 100%; margin-top: 50px" id="customers_table" class="tables dataTable no-footer">
         <thead>
         <tr style=" background: #ffc912; height: 50px">
@@ -30,38 +40,41 @@
         </tr>
         </thead>
         <tbody>
-        <? $num = 1; ?>
+        <?$num = 1?>
+        @if($users)
         @foreach ($users as $user)
 
-            <tr class="td-height tables" style="border-bottom: solid #b6b6b6 1px;" id="in_company" data-id="<?= $user->id ?>">
-                <td id="id"><?= $user->id ?></td>
-                <td id="name"><b><?= $user->name ?></b></td>
-                <td id="surname"><?= $user->surname ?></td>
-                <td id="email"><b><?= $user->email ?></b></td>
-                <td id="phone_number"><?= $user->phone_number ?></td>
-                <td id="address"><b><?= $user->address ?></b></td>
-                <td id="creat_at"><b><?= $user->creat_at ?></b></td>
+            <tr class="td-height tables" style="border-bottom: solid #b6b6b6 1px;" id="in_company" data-id="{{$user->id }}">
+                <td id="id">{{$user->id }}</td>
+                <td id="name"><b>{{$user->name }}</b></td>
+                <td id="surname">{{$user->surname }}</td>
+                <td id="email"><b>{{$user->email }}</b></td>
+                <td id="phone_number">{{$user->phone_number }}</td>
+                <td id="address"><b>{{$user->address }}</b></td>
+                <td id="creat_at"><b>{{$user->creat_at }}</b></td>
             </tr>
-            <? $num++ ?>
+             <?$num++?>
         @endforeach
+        @endif
         </tbody>
     </table>
+    <a class="btn btn-default" href="{{route('post.index')}}">AAA</a>
+</div>
 
 
     <script>
 
-        $('#archive').on('click', function () {
-            var archiveId = $(this).data('id');
+        $('#form1').on('click', function () {
+            let form1 = $("input:text").val();
             $.ajax({
-                url: '/main/delete_company/id/' + archiveId,
+                url: '/customer/saveCustomerToArchive/id/' + form1,
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
                     if (data.status === 'OK') {
 
-                        $('#in_archive<?= $user->id ?>').remove();
                     } else {
-                        alert("Error");
+
                     }
                 }
             });
