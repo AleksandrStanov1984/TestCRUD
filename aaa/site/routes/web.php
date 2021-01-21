@@ -13,11 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', 'App\Http\Controllers\MainController@home');
-//Route::get('/home', 'App\Http\Controllers\MainController@home');
-
 Route::get('/', 'App\Http\Controllers\NewUserController@home');
 Route::get('/home', 'App\Http\Controllers\NewUserController@home');
+
+Route::get('searchSimple', 'App\Http\Controllers\SearchController@index')->name('searchSimple');
 
 Route::get('/user/{id}/{name}', function ($id, $name) {
     return 'ID: ' . $id . ' . NAME .' . $name;

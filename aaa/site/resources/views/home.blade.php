@@ -15,14 +15,21 @@
         }
 
     </style>
-    <div class="input-group">
-        <div class="form-outline">
-            <input type="search" id="form1" class="form-control" placeholder="Search" value=""/>
+
+    <form action="{{route('searchSimple')}}" method="GET" class="search-simple">
+        <div class="row">
+            <div class="col-xs-10">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="q" value="{{ old('q') }}" required>
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <div class="form-group">
+                    <input class="btn btn-info" type="submit" value="Искать">
+                </div>
+            </div>
         </div>
-        <a href="" type="button" class="btn btn-primary" style="width: 40px">
-            <i class="fas fa-search"></i>
-        </a>
-    </div>
+    </form>
 
 
 <div style="margin-top: 10px">
@@ -58,29 +65,9 @@
         @endif
         </tbody>
     </table>
-    <a class="btn btn-default" href="{{route('post.index')}}">AAA</a>
+{{--    <a class="btn btn-default" href="{{route('user.index')}}">AAA</a>--}}
 </div>
 
-
-    <script>
-
-        $('#form1').on('click', function () {
-            let form1 = $("input:text").val();
-            $.ajax({
-                url: '/customer/saveCustomerToArchive/id/' + form1,
-                type: 'POST',
-                dataType: 'json',
-                success: function (data) {
-                    if (data.status === 'OK') {
-
-                    } else {
-
-                    }
-                }
-            });
-        });
-
-    </script>
 
 @endsection
 
