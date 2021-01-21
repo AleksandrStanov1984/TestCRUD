@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Models\NewUser;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class SearchController extends Controller
 {
@@ -93,7 +94,7 @@ class SearchController extends Controller
     /**
      * @param string $q
      * @param integer $count
-     * @return \Illuminate\Pagination\LengthAwarePaginator
+     * @return LengthAwarePaginator
      */
     public function search(string $q, int $count){
         $query = mb_strtolower($q, 'UTF-8');
